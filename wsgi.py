@@ -33,7 +33,7 @@ class Info(Resource):
     description = {
         'id': 'mlbparks-py',
         'displayName': 'MLB Parks (PY)',
-        'type': 'marker',
+        'type': 'cluster',
         'center': {'latitude': '39.82', 'longitude': '-98.57'},
         'zoom': 5
     }
