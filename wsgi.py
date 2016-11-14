@@ -53,11 +53,11 @@ class DataLoad(Resource):
         collection.create_index([('Location', GEO2D)])
 
         with open(DATASET_FILE, 'rb') as fp:
-            data = json.load(fp)
-
             entries = []
 
-            for entry in data:
+            for data in fp.readlines():
+                entry = json.loads(data)
+
                 loc = [entry['coordinates'][1], entry['coordinates'][0]]
                 entry['Location'] = loc
 
