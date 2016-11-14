@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import os
-import csv
+import json
 
 from flask import Flask, request
 from flask_restful import Resource, Api
@@ -52,17 +52,13 @@ class DataLoad(Resource):
         collection.remove({})
         collection.create_index([('Location', GEO2D)])
 
-        with open(DATASET_FILE, 'rb') as csvfile:
-            reader = csv.reader(csvfile)
-
-            headers = reader.next()
+        with open(DATASET_FILE, 'rb') as fp:
+            data = json.load(fp)
 
             entries = []
 
-            for row in reader:
-                entry = dict(zip(headers, row))
-
-                loc = [entry['coordinates'][1], entry['coordinates'][0])]
+            for entry in data:
+                loc = [entry['coordinates'][1], entry['coordinates'][0]]
                 entry['Location'] = loc
 
                 entries.append(entry)
@@ -84,10 +80,10 @@ def format_result(entries):
     for entry in entries:
         data = {}
 
-        data['id'] = entry['name']
+        data['id'] = entry['ballpark']
         data['latitude'] = str(entry['coordinates'][0])
         data['longitude'] = str(entry['coordinates'][1])
-        data['name'] = entry['ballpark']
+        data['name'] = entry['name']
 
         result.append(data)
 
