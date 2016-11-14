@@ -5,7 +5,7 @@
     "name": "mlbparks-py",
     "annotations": {
       "iconClass": "icon-java",
-      "description": "Application template MBL Parks backend running on Python/Flask and using mongodb"
+      "description": "Application template MLB Parks backend running on Python/Flask and using mongodb"
     }
   },
   "labels": {
