@@ -21,5 +21,5 @@ There's some options that can be parameterized:
 Example:
 
 ----
-oc new-app mlbparks -p APPLICATION_HOSTNAME=mlbparks-roadshow.127.0.0.1.xip.io
+oc new-app mlbparks-py -p APPLICATION_HOSTNAME=mlbparks-roadshow.127.0.0.1.xip.io
 ----
