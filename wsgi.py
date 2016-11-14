@@ -47,7 +47,7 @@ class DataLoad(Resource):
     def get(self):
         client = MongoClient(DB_URI)
         database = client[DB_NAME]
-        collection = database.aussiedunnies
+        collection = database.mlbparks
 
         collection.remove({})
         collection.create_index([('Location', GEO2D)])
@@ -93,7 +93,7 @@ class DataAll(Resource):
     def get(self):
         client = MongoClient(DB_URI)
         database = client[DB_NAME]
-        collection = database.aussiedunnies
+        collection = database.mlbparks
 
         return format_result(collection.find())
 
@@ -110,7 +110,7 @@ class DataWithin(Resource):
 
         client = MongoClient(DB_URI)
         database = client[DB_NAME]
-        collection = database.aussiedunnies
+        collection = database.mlbparks
 
         return format_result(collection.find(query))
 
