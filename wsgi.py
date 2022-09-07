@@ -49,7 +49,7 @@ class DataLoad(Resource):
         database = client[DB_NAME]
         collection = database.mlbparks
 
-        collection.remove({})
+        collection.delete_many({})
         collection.create_index([('Location', GEO2D)])
 
         with open(DATASET_FILE, 'r') as fp:
@@ -70,7 +70,7 @@ class DataLoad(Resource):
             if entries:
                 collection.insert_many(entries)
 
-        return 'Inserted %s items.' % collection.count()
+        return 'Inserted %s items.' % collection.count_documents({})
 
 api.add_resource(DataLoad, '/ws/data/load')
 
